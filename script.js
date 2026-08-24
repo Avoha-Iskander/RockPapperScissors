@@ -1,4 +1,3 @@
-/**
 
 // Test //
 
@@ -73,11 +72,3 @@ playGame();
 if(humanScore === computerScore) { console.log("Fin de partie: Egalite!");}
 else if(humanScore > computerScore) { console.log("Fin de partie: Humain gagne!");}
 else {console.log("Fin de partie: Ordi gagne!");};
-
-*/
-
-const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
-
-for (const cat of cats) {
-  console.log(cat);
-}
