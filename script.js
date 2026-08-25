@@ -1,8 +1,4 @@
 
-// Test //
-
-console.log("paper, rock, scissors!")
-
 // Fonction choix Ordinateur //
 
 function getComputerChoice() {
@@ -14,61 +10,78 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-// Fonction choix Humain //
-
-function getHumanChoice() {
-    let message = "Choose Rock, Paper or Scissors";
-    let humanChoiceTemp = prompt(message);
-    let humanChoice = humanChoiceTemp.toLowerCase();
-    return humanChoice;
-}
-
 // Fonction Match //
-
-
 
 function playRound(humanChoice, computerChoice) {
 
-    if (humanChoice === computerChoice) { console.log("Egalite!");}
+
+    if (humanChoice === computerChoice) { roundResult= "Egalite!";}
     else if (humanChoice === "paper") { 
-        if (computerChoice === "rock") { humanScore = humanScore + 1; console.log("Humain gagne!");}
-        else { computerScore = computerScore + 1; console.log("Ordi gagne!");}
+        if (computerChoice === "rock") { humanScore = humanScore + 1; roundResult="Humain gagne!";}
+        else { computerScore = computerScore + 1; roundResult="Ordi gagne!";}
     }
     else if (humanChoice === "rock") { 
-        if (computerChoice === "scissors") { humanScore = humanScore + 1; console.log("Humain gagne!");}
-        else { computerScore = computerScore + 1; console.log("Ordi gagne!");}
+        if (computerChoice === "scissors") { humanScore = humanScore + 1; roundResult="Humain gagne!";}
+        else { computerScore = computerScore + 1; roundResult="Ordi gagne!";}
     }
     else {
-        if (computerChoice === "paper") { humanScore = humanScore + 1; console.log("Humain gagne!");}
-        else { computerScore = computerScore + 1; console.log("Ordi gagne!");}
+        if (computerChoice === "paper") { humanScore = humanScore + 1; roundResult="Humain gagne!";}
+        else { computerScore = computerScore + 1; roundResult="Ordi gagne!";}
     }
 }
 
 
-// Fonction Jeu //
+// Initialisation //
 
 let humanScore = 0;
 let computerScore = 0;
 let humanSelection = "";
 let computerSelection = "";
+let roundResult = "";
+
+// Fonction Jeu //
 
 function playGame() {
-    for (let i = 1; i <= 5 ; i ++) {
- 
-humanSelection = getHumanChoice();
 computerSelection = getComputerChoice();
-
-console.log("Humain dit: " + humanSelection);
-console.log("Ordi dit: " + computerSelection);
 
 playRound(humanSelection, computerSelection);
 
-console.log("Score: Humain = " + humanScore + "/ Ordi = " + computerScore);
+const core = document.querySelector("#core"); 
+const roundResult1 = document.createElement("p");
+roundResult1.classList.add("roundResult");
+roundResult1.textContent = "Humain dit: " + humanSelection + " / Ordi dit: " + computerSelection + " => " + roundResult +
+" => Score: Humain = " + humanScore + "/ Ordi = " + computerScore ;
+core.append(roundResult1);
 
-}}
+if(humanScore === 5) {
+    const core = document.querySelector("#core"); 
+const endOfGame = document.createElement("h1");
+endOfGame.classList.add("endOfGame");
+endOfGame.textContent = "FIN DE PARTIE => HUMAIN GAGNE!";
+core.append(endOfGame);}
 
-playGame();
+else if(computerScore === 5) { 
+    const core = document.querySelector("#core"); 
+const endOfGame = document.createElement("h1");
+endOfGame.classList.add("endOfGame");
+endOfGame.textContent = "FIN DE PARTIE => ORDI GAGNE!";
+core.append(endOfGame);}
+else {}
 
-if(humanScore === computerScore) { console.log("Fin de partie: Egalite!");}
-else if(humanScore > computerScore) { console.log("Fin de partie: Humain gagne!");}
-else {console.log("Fin de partie: Ordi gagne!");};
+}
+
+const rock = document.querySelector("#rock");
+rock.addEventListener("click", () => {humanSelection = "rock"; playGame();});
+
+const paper = document.querySelector("#paper");
+paper.addEventListener("click", () => {humanSelection = "paper"; playGame();});
+
+const scissors = document.querySelector("#scissors");
+scissors.addEventListener("click", () => {humanSelection = "scissors"; playGame();});
+
+
+
+//Fin de Partie//
+
+
+
